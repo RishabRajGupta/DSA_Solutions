@@ -30,6 +30,7 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
 
+        // mapping every element with resp. index
         vector<pair<int, int>> nums2;
         for (int i = 0; i < nums.size(); i++) {
             nums2.push_back({nums[i], i});
@@ -45,9 +46,9 @@ public:
             if (n == target) {
                 return {nums2[i].second, nums2[j].second};
             } else if (n < target) {
-                i++;
+                i++;        // if (sum < target) -> move i rightwards
             } else {
-                j--;
+                j--;        // if (sum > target) -> move j leftwards
             }
         }
         return {};
@@ -62,12 +63,17 @@ public:
     vector<int> twoSum(vector<int>& nums, int target) {
 
         int n = nums.size();
+        
+        // mapping every element with resp. index
         unordered_map<int, int> store;
         for(int i = 0; i < n; i++){
             store[nums[i]] = i;
         }
+        
         for(int i = 0; i < n; i++){
-            int x = target-nums[i];
+            int x = target-nums[i];    // target - currElement = reqElement
+
+            // find reqElement && dont take same element twice
             if(store.find(x) != store.end() &&  store[x] != i){
                 return {i, store[x]};
             }
