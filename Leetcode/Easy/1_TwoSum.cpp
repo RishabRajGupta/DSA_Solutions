@@ -56,3 +56,26 @@ public:
 
 // Time Complexity : O(n log n)
 // Space Complexity : O(n)
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+
+        int n = nums.size();
+        unordered_map<int, int> store;
+        for(int i = 0; i < n; i++){
+            store[nums[i]] = i;
+        }
+        for(int i = 0; i < n; i++){
+            int x = target-nums[i];
+            if(store.find(x) != store.end() &&  store[x] != i){
+                return {i, store[x]};
+            }
+        }
+
+        return {};
+    }
+};
+
+// Time Complexity : O(n)
+// Space Complexity : O(n)
